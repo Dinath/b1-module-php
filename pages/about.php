@@ -1,0 +1,1 @@
+<h1>À propos de moi <?php echo $name; ?></h1>
