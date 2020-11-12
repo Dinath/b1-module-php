@@ -1,1 +1,1 @@
-<h1>À propos de moi <?php echo $name; ?></h1>
+<h1>À propos de moi</h1>

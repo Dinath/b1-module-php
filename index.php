@@ -31,28 +31,6 @@ ini_set('display_errors', 'On');
     </nav>
 
     <?php
-    $name = "Jean";
-    $firstname = "Luc";
-    $age = 18;
-    $hasDriverLicence = true;
-    ?>
-
-    <ul>
-        <li>Nom : <?php echo $name; ?></li>
-        <li>Age : <?php echo $age; ?></li>
-        <li>Permis ? : <?php echo $hasDriverLicence; ?></li>
-    </ul>
-
-    <?php
-    if ($age >= 18) {
-        echo "Vous êtes majeur !";
-    }
-    if ($hasDriverLicence) {
-        echo "Vous avez le permis :car:";
-    }
-    ?>
-
-    <?php
     $page = $_GET['page'];
 
     if ($page === "a-propos") {
