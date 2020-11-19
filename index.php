@@ -27,6 +27,9 @@ ini_set('display_errors', 'On');
             <li class="nav-item">
                 <a href="/?page=contact" class="nav-link">Contact</a>
             </li>
+            <li class="nav-item">
+                <a href="/functions/date.php">Date</a>
+            </li>
         </ul>
     </nav>
 
@@ -34,7 +37,7 @@ ini_set('display_errors', 'On');
     $name = "Jean";
     $firstname = "Luc";
     $age = 18;
-    $hasDriverLicence = true;
+    $hasDriverLicence = true; // a le permis voiture
     ?>
 
     <ul>
@@ -53,7 +56,16 @@ ini_set('display_errors', 'On');
     ?>
 
     <?php
-    $page = $_GET['page'];
+    /**
+     * Affiche une portion de page, en fonction de la valeur dans l'URL.
+     *
+     * Vérifie si la clef "page", existe dans $_GET
+     */
+    if (array_key_exists('page', $_GET)) {
+        $page = $_GET['page'];
+    } else {
+        $page = null;
+    }
 
     if ($page === "a-propos") {
         include './pages/about.php';
