@@ -27,21 +27,41 @@ ini_set('display_errors', 'On');
             <li class="nav-item">
                 <a href="/?page=contact" class="nav-link">Contact</a>
             </li>
+            <li class="nav-item">
+                <a href="/pages/array.php" class="nav-link">Tableau</a>
+            </li>
         </ul>
     </nav>
 
     <?php
+    /**
+     * Démonstration de la différence entre == et ===.
+     */
+//    if ("2" == 2) {
+//        echo '"2" == 2';
+//    }
+//
+//    echo "<br>";
+//
+//    if (2 === 2) {
+//        echo '2 === 2';
+//    }
+    ?>
+
+    <?php
+    /**
+     * Accéder à une page en fonction du paramètre dans l'URL.
+     */
     $page = $_GET['page'];
 
     if ($page === "a-propos") {
-        include './pages/about.php';
+        require './pages/about.php';
     } elseif ($page === 'contact') {
-        include './pages/contact.php';
+        require './pages/contact.php';
     } else {
-        include './pages/homepage.php';
+        require './pages/homepage.php';
     }
     ?>
-
 </div>
 </body>
 </html>
