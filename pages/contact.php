@@ -3,4 +3,10 @@
 <?php
 
 // Ne marche que si "require'...
-echo $name;
+if (isset($name)) {
+    echo $name;
+} else {
+    echo 'La variable $name n\'existe pas.';
+}
+
+

@@ -21,83 +21,49 @@ ini_set('display_errors', 'On');
         <ul>
             <li><a href="/">Accueil</a></li>
             <li><a href="/?page=contact">Contact</a></li>
+<!--            <li><a href="/pages/contact.php">Contact (page)</a></li>-->
             <li><a href="/?page=about">À propos</a></li>
+            <li><a href="/?page=array">Tableaux</a></li>
         </ul>
     </nav>
 </header>
 
 <div class="container">
-    <h1>Page de test</h1>
-
-    <?php
-    $name = "alderson";
-    $firstname = "elliot";
-    $has_driver_licence = true;
-    $hasDriverLicence = true;
-    $hasCar = false;
-    $pi = 3.14;
-    $age = 1;
-
-    function isAdult(int $age): bool
-    {
-        if ($age >= 18) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Display majority.
-     *
-     * Commentaire inutile !
-     */
-    function displayMajority(): void {
-
-        $age = '18';
-
-        $isAdult = isAdult($age);
-
-        if ($isAdult) {
-            echo "Vous êtes majeur";
-        } else {
-            echo "Vous n'êtes PAS majeur";
-        }
-    }
-
-    function formatFullName(string $name, string $firstname, bool $isFemale): string
-    {
-        if ($isFemale) {
-            return "Mme $firstname " . strtoupper($name);
-        } else {
-            return "Mr $firstname " . strtoupper($name);
-        }
-    }
-
-    ?>
-
-    <!--    HTML dans du PHP-->
-    <h2><?php echo formatFullName($name, $firstname, false); ?></h2>
-
     <div>
-        <?php displayMajority(); ?>
-
         <?php
         /**
          * Inclût les pages en fonction de l'URL.
          */
-        if (array_key_exists('page', $_GET)) {
-            if ($_GET['page'] === "contact") {
-                require './pages/contact.php';
-            } elseif ($_GET['page'] === "about") {
-                require './pages/about.php';
-            } else {
-                require './pages/homepage.php';
+        if (\array_key_exists('page', $_GET)) {
+
+            $page = $_GET['page'];
+
+            switch ($page) {
+                case 'contact':
+                    require './pages/contact.php';
+                    break;
+                case 'about':
+                    require  './pages/about.php';
+                    break;
+                case 'array':
+                    require  './pages/array.php';
+                    break;
+                default:
+                    require './pages/homepage.php';
             }
+
+//            if ($page === "contact") {
+//                require './pages/contact.php';
+//            } elseif ($page === "about") {
+//                require './pages/about.php';
+//            } elseif ($page === "array") {
+//                require './pages/about.php';
+//            } else {
+//                require './pages/homepage.php';
+//            }
         }
         ?>
     </div>
-
 </div>
 
 <footer>
