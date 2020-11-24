@@ -1,10 +1,8 @@
 
 
-<h1>Je suis sur la page d'accueil</h1>
+<h1 class="mt-5">Je suis sur la page d'accueil</h1>
 
 <?php
-
-
 /**
  * Cette fonction est cool mais elle a un défaut :
  *
@@ -35,6 +33,7 @@ function getFullname(string $name, string $firstname): string
 $fullname = getFullname('Soyer', 'Alex');
 
 displayWelcomeMessage(false) ;
+
 echo "<h3>$fullname</h3>";
 echo "<p>Cher $fullname, nous sommes ravi de...</p>"
 

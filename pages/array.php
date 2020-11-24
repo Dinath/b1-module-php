@@ -1,4 +1,9 @@
 
+<?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
+?>
+
 <pre>
 <?php
 
@@ -29,17 +34,48 @@ $users = [
     $student3, // 3
 ];
 
-
 $numberOfUsers = count($users);
 
 echo '<p>Vous avez ' . $numberOfUsers . ' utilisateurs.</p>';
 
+$i = 0;
+echo "<h2>Boucle while avec un index ++</h2>";
+echo '<ul>';
+while ($i < $numberOfUsers) {
+    echo "<li>" . displayUserName($users[$i]) . "</li>";
+    $i++; // $i = $i + 1;
+}
+echo '</ul>';
+
+$i = $numberOfUsers;
+echo "<h2>Boucle while avec un index --</h2>";
+echo '<ul>';
+while ($i > 0) {
+    $i--; // $i = $i - 1;
+    echo "<li>" . displayUserName($users[$i]) . "</li>";
+}
+echo '</ul>';
+
+echo "<h2>Boucle foreach avec clef => valeur</h2>";
+echo '<ul>';
+// $users = liste
+// $index = clef
+// $u = valeur
+foreach ($users as $index => $u) {
+    echo "<li>$index : " . displayUserName($u) . '</li>';
+}
+echo '</ul>';
+
+/**
+ * On peut aussi affecter des éléments par leur index.
+ */
 $users = [];
 $users[0] = $teacher;
 $users[1] = $student;
 $users[2] = $student2;
 $users[3] = $student3;
 
+echo '<h2>Boucle for "classique"</h2>';
 echo '<ul>';
 /**
  * $i = 0           =        i = 0,
@@ -56,26 +92,20 @@ for ($i = 0;
 }
 echo '</ul>';
 
-print_r($users);
-
 //echo '<ul>';
 //echo "<li>" . displayUserName($users[0]) . "</li>";
 //echo "<li>" . displayUserName($users[1]) . "</li>";
 //echo '</ul>';
 
-//echo '<ul>';
-//foreach ($users as $user) {
-//    echo '<li>' . displayUserName($user) . '</li>';
-//}
-//echo '</ul>';
-
 function displayUserName(array $user): string {
-    return $user['name'] . ' ' . $user['firstname'];
+    return strtoupper($user['name']) . ' ' . $user['firstname'];
 }
+
+echo "<h2>Exemple d'utilisation array_map</h2>";
 
 $userNames = array_map('displayUserName', $users);
 
-//var_dump($userNames);
+var_dump($userNames);
 
 ?>
 </pre>

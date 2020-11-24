@@ -17,49 +17,71 @@ ini_set('display_errors', 'On');
 <body>
 
 <div class="container">
-
-    <nav class="navbar">
-        <a href="/" class="navbar-brand">Accueil</a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="/?page=a-propos" class="nav-link">À propos</a>
-            </li>
-            <li class="nav-item">
-                <a href="/?page=contact" class="nav-link">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a href="/pages/array.php" class="nav-link">Tableau</a>
-            </li>
-        </ul>
-    </nav>
+    <?php
+    require './components/navbar.php';
+    require './components/navigation.php';
+    ?>
 
     <?php
     /**
      * Démonstration de la différence entre == et ===.
      */
-//    if ("2" == 2) {
-//        echo '"2" == 2';
-//    }
-//
-//    echo "<br>";
-//
-//    if (2 === 2) {
-//        echo '2 === 2';
-//    }
+    //    if ("2" == 2) {
+    //        echo '"2" == 2';
+    //    }
+    //
+    //    echo "<br>";
+    //
+    //    if (2 === 2) {
+    //        echo '2 === 2';
+    //    }
     ?>
 
     <?php
     /**
      * Accéder à une page en fonction du paramètre dans l'URL.
+     *
+     * On vérifie que la page existe.
      */
-    $page = $_GET['page'];
-
-    if ($page === "a-propos") {
-        require './pages/about.php';
-    } elseif ($page === 'contact') {
-        require './pages/contact.php';
+    if (array_key_exists('page', $_GET)) {
+        $page = $_GET['page'];
     } else {
-        require './pages/homepage.php';
+        $page = null;
+    }
+
+    $pages = [
+        'a-propos',
+        'contact',
+        'accueil',
+        'tableau',
+    ];
+
+    /**
+     * Si le paramètre "page" n'existe pas
+     */
+    if (! $page) {
+        echo "<div class=\"alert alert-warning\" role=\"alert\">Vous n'avez choisi aucune page :)</div>";
+    }
+    /**
+     * Si le paramètre "page" existe, on vérifie qu'il se trouve dans le tableau des pages.
+     */
+    elseif (in_array($page, $pages)) {
+        echo "<div class=\"alert alert-primary\" role=\"alert\">Cette page existe, la voici !</div>";
+        if ($page === "a-propos") {
+            require './pages/about.php';
+        } elseif ($page === 'contact') {
+            require './pages/contact.php';
+        } elseif ($page === 'accueil' ) {
+            require './pages/homepage.php';
+        } elseif ($page === 'tableau' ) {
+            require './pages/array.php';
+        }
+    }
+    /**
+     * Si la valeur du paramètre page n'existe pas, on affiche une alerte.
+     */
+    else {
+        echo "<div class=\"alert alert-danger\" role=\"alert\">Attention, cette page n'existe pas.</div>";
     }
     ?>
 </div>
