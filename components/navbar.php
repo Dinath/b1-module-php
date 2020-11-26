@@ -13,5 +13,8 @@
         <li class="nav-item">
             <a href="/?page=tableau" class="nav-link">Tableau</a>
         </li>
+        <li class="nav-item">
+            <a href="/?page=base-de-donnees" class="nav-link">Base de données</a>
+        </li>
     </ul>
 </nav>

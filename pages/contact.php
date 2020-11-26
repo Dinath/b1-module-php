@@ -1,13 +1,13 @@
 <?php
-$firstname = "Alex";
-$name = "Soyer";
-$age = 27;
-$newsletter = true;
-
-$email = "dev@null.com";
-$password = 'root';
-
-$sex = "Garçon";
+//$firstname = "Alex";
+//$name = "Soyer";
+//$age = 27;
+//$newsletter = true;
+//
+//$email = "dev@null.com";
+//$password = 'root';
+//
+//$sex = "Garçon";
 ?>
 
 <pre>
@@ -35,7 +35,7 @@ $sex = "Garçon";
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Nom</label>
-            <input type="text" name="lastname" class="form-control" id="inputPassword4" placeholder="Nom" value="Soyer">
+            <input type="text" name="lastname" class="form-control" id="inputPassword4" placeholder="Nom" value="Soyer" required>
         </div>
     </div>
     <div class="form-row">
@@ -60,7 +60,7 @@ $sex = "Garçon";
         </div>
         <div class="form-group col-md-6">
             <label for="inputZip">Âge</label>
-            <input type="number" name="age" class="form-control" id="inputZip" placeholder="18" value="27">
+            <input type="number" name="age" class="form-control" id="inputZip" placeholder="18" value="27" required>
         </div>
     </div>
     <div class="form-row">

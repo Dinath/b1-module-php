@@ -16,7 +16,7 @@ ini_set('display_errors', 'On');
 </head>
 <body>
 
-<div class="container">
+<main class="container">
     <?php
     require './components/navbar.php';
     require './components/navigation.php';
@@ -42,6 +42,9 @@ ini_set('display_errors', 'On');
      * Accéder à une page en fonction du paramètre dans l'URL.
      *
      * On vérifie que la page existe.
+     *
+     * http://localhost/?page=contact
+     * http://localhost
      */
     if (array_key_exists('page', $_GET)) {
         $page = $_GET['page'];
@@ -49,11 +52,15 @@ ini_set('display_errors', 'On');
         $page = null;
     }
 
+    /**
+     * Liste de pages.
+     */
     $pages = [
         'a-propos',
         'contact',
         'accueil',
         'tableau',
+        'base-de-donnees'
     ];
 
     /**
@@ -75,6 +82,8 @@ ini_set('display_errors', 'On');
             require './pages/homepage.php';
         } elseif ($page === 'tableau' ) {
             require './pages/array.php';
+        } elseif ($page === 'base-de-donnees' ) {
+            require './pages/database.php';
         }
     }
     /**
@@ -84,6 +93,6 @@ ini_set('display_errors', 'On');
         echo "<div class=\"alert alert-danger\" role=\"alert\">Attention, cette page n'existe pas.</div>";
     }
     ?>
-</div>
+</main>
 </body>
 </html>
