@@ -16,5 +16,8 @@
         <li class="nav-item">
             <a href="/?page=base-de-donnees" class="nav-link">Base de données</a>
         </li>
+        <li class="nav-item">
+            <a href="/?page=admin" class="nav-link">Admin</a>
+        </li>
     </ul>
 </nav>

@@ -1,3 +1,10 @@
+<?php
+error_reporting(-1);
+
+// Même chose que error_reporting(E_ALL);
+ini_set('error_reporting', E_ALL);
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -22,6 +29,13 @@
      * Affiche une portion de page, en fonction de la valeur dans l'URL.
      *
      * Vérifie si la clef "page", existe dans $_GET
+     *
+     * http://localhost/epsi/?page=contact
+     *
+     * $_GET = ['page' => 'contact'];
+     * $_GET = [];
+     *
+     * Pour éviter les undefined index ... in array
      */
     if (array_key_exists('page', $_GET)) {
         $page = $_GET['page']; // exemple : contact, date, tableau
@@ -39,7 +53,9 @@
         include './pages/date.php';
     }  elseif ($page === 'base-de-donnees') {
         include './pages/database.php';
-    }  else {
+    }  elseif ($page === 'admin') {
+        include './pages/admin.php';
+    }   else {
         include './pages/homepage.php';
     }
     ?>

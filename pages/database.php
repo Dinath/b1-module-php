@@ -10,13 +10,13 @@
         $dbh = new PDO($dsn, $user, $password);
         echo "<li>Connexion autorisée 🎉</li>";
 
-        $dbh->exec('DROP DATABASE IF EXISTS EPSI;');
+        $dbh->exec('DROP DATABASE IF EXISTS epsi;');
         echo "<li>Suppression de la base de données</li>";
 
-        $dbh->exec('CREATE DATABASE EPSI;');
+        $dbh->exec('CREATE DATABASE epsi;');
         echo "<li>Base de données créée</li>";
 
-        $dbh->exec('CREATE TABLE `EPSI`.`contact` (
+        $dbh->exec('CREATE TABLE `epsi`.`contact` (
           `id` INT NOT NULL AUTO_INCREMENT,
           `name` VARCHAR(45) NOT NULL,
           `firstname` VARCHAR(45) NOT NULL,
