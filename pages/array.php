@@ -62,14 +62,21 @@ echo "<h3>while</h3>";
 $i = 0;
 echo '<ul>';
 while ($i < $numberOfUsers) {
-    echo '<li>' . $users[$i]['firstname'] . ' ' . $users[$i]['name'] . '</li>';
-    $i ++;
+    $user = $users[$i]; // $users[0] -> $teacher
+    echo '<li>' . $user['firstname'] . ' ' . $user['name'] . '</li>';
+    $i++;
 }
 echo '</ul>';
 
 
 echo "<h3>foreach</h3>";
 echo '<ul>';
+//foreach ($users as $index => $user) {
+// key = $index
+// value = $userpage: contact
+foreach ($users as $index => $user) {
+    echo '<li>#' . ($index + 1) . " -> " . $user['firstname'] . ' ' . $user['name'] . '</li>';
+}
 foreach ($users as $user) {
     echo '<li>' . $user['firstname'] . ' ' . $user['name'] . '</li>';
 }
@@ -85,12 +92,13 @@ echo '<ul>';
 // $i = 3
 // $i = 4 ---> $i < 4, on ne respecte la condition, on sort
 for ($i = 0; $i < $numberOfUsers; $i++) { // $i = $i + 1
-    echo '<li>' . $users[$i]['firstname'] . ' ' . $users[$i]['name']  . '</li>';
+    $user = $users[$i]; // $users[0] -> $teacher
+    echo '<li>' . $user['firstname'] . ' ' . $user['name']  . '</li>';
 }
 echo '</ul>';
 
 // $users[0]; // teacher
 // $users[1]; // student
-// $users[2] // undefined index 2
+// $users[2]; // undefined index 2
 ?>
 </pre>
