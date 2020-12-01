@@ -42,8 +42,6 @@ try {
 
 <?php
 try {
-    $dsn = 'mysql:host=mysql;dbname=epsi';
-    $dbh = new PDO($dsn, $user, $password); // créer une nouvelle connexion à la base de données AVEC LA BONNE TABLE
     $dbh->exec('CREATE TABLE `epsi`.`contact` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `name` VARCHAR(45) NOT NULL,
@@ -61,7 +59,7 @@ try {
 
 <?php
 try {
-    $stmt = $dbh->prepare('INSERT INTO `contact` 
+    $stmt = $dbh->prepare('INSERT INTO `epsi`.`contact` 
         (name, firstname, birthdate, message) VALUES (
         "SOYER", "Alex", "1993-01-19", "Salut, je suis Alex"
     );');
