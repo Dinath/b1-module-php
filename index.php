@@ -20,7 +20,6 @@ ini_set('display_errors', 'On');
     <title>Classe 3</title>
 </head>
 <body>
-
 <header>
     <nav class="container">
         <ul>
@@ -29,6 +28,7 @@ ini_set('display_errors', 'On');
             <li><a href="/?page=about">À propos</a></li>
             <li><a href="/?page=array">Tableaux</a></li>
             <li><a href="/?page=database">Base de données</a></li>
+            <li><a href="/?page=admin">Administration</a></li>
         </ul>
     </nav>
 </header>
@@ -45,6 +45,7 @@ ini_set('display_errors', 'On');
             <option value="about">À propos</option>
             <option value="array">Tableaux</option>
             <option value="database">Base de données</option>
+            <option value="admin">Administration</option>
         </select>
         <input type="submit" value="Envoyer">
     </form>
@@ -70,6 +71,9 @@ ini_set('display_errors', 'On');
                     break;
                 case 'database':
                     require  './pages/database.php';
+                    break;
+                case 'admin':
+                    require  './pages/admin.php';
                     break;
                 default:
                     require './pages/homepage.php';

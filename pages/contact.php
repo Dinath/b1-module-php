@@ -76,7 +76,7 @@ $birthdate = $_POST['birthdate'];
 if (array_key_exists('newsletter', $_POST)) {
     $newsletter = $_POST['newsletter'] === 'on';
 } else {
-    $newsletter = false;
+    $newsletter = 0;
 }
 
 // 2. connexion à la base de données
