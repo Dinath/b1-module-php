@@ -11,6 +11,7 @@
             <option value="contact">Contact</option>
             <option value="tableau">Tableau</option>
             <option value="admin">Admin.</option>
+            <option value="session">Session</option>
         </select>
 <!--        <label for="next-page" class="sr-only">Ma page</label>-->
 <!--        <input type="text" name="page" id="next-page"  class="form-control" placeholder="Ma page" required>-->

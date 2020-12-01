@@ -38,6 +38,28 @@ ini_set('display_errors', 'On');
     ?>
 
     <?php
+
+    // démarre une session si elle n'existe pas encore
+    if (! session_id()) {
+        session_start();
+    }
+
+    // la personne n'avait pas rentré son prénom, elle vient de le faire
+    if (array_key_exists('session_firstname', $_POST)) {
+        $_SESSION['prenom'] = $_POST['session_firstname'];
+    }
+    ?>
+
+    <?php if (! array_key_exists('prenom', $_SESSION)) : ?>
+        <form action="" method="post">
+            <input type="text" name="session_firstname" id="">
+            <input type="submit" value="Soumettre mon prenom">
+        </form>
+    <?php else: ?>
+        <p>Bienvenue, <?php echo $_SESSION['prenom']; ?></p>
+    <?php endif; ?>
+
+    <?php
     /**
      * Accéder à une page en fonction du paramètre dans l'URL.
      *
@@ -61,7 +83,8 @@ ini_set('display_errors', 'On');
         'accueil',
         'tableau',
         'base-de-donnees',
-        'admin'
+        'admin',
+        'session',
     ];
 
     /**
@@ -87,6 +110,8 @@ ini_set('display_errors', 'On');
             require './pages/database.php';
         } elseif ($page === 'admin' ) {
             require './pages/admin.php';
+        } elseif ($page === 'session' ) {
+            require './pages/session.php';
         }
     }
     /**

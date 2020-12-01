@@ -1,15 +1,3 @@
-<?php
-//$firstname = "Alex";
-//$name = "Soyer";
-//$age = 27;
-//$newsletter = true;
-//
-//$email = "dev@null.com";
-//$password = 'root';
-//
-//$sex = "Garçon";
-?>
-
 <h1>On reste en contact !</h1>
 
 <pre><?php print_r($_POST); ?></pre>
@@ -28,7 +16,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="exampleFormControlTextarea1">Votre message</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3">Test</textarea>
         </div>
     </div>
     <div class="form-row">
@@ -79,11 +67,14 @@ $birthdate = $_POST['birthdate'];
 $message = $_POST['message'];
 
 // 3. Insérer les données dans la base
-$stmt = $dbh->prepare("INSERT INTO `epsi`.`contact` 
+$sql = "INSERT INTO `epsi`.`contact` 
         (name, firstname, birthdate, message) VALUES (
         '$name', '$firstname', '$birthdate', '$message'
-    );"
-);
+    );";
+
+//var_dump($sql); // test'); DROP DATABASE epsi; -- ou <script>alert('alex');</script>
+
+$stmt = $dbh->prepare($sql);
 
 // 4. Afficher un message à l'utilisateur en cas de problème
 if ($stmt->execute() === true) {
