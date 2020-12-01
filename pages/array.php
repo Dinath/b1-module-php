@@ -66,6 +66,17 @@ foreach ($users as $index => $u) {
 }
 echo '</ul>';
 
+echo "<h2>Boucle foreach</h2>";
+echo '<ul>';
+// $users = liste
+// $user = valeur
+// $users --------------> $user
+foreach ($users as $user) {
+    var_dump($user);
+    echo "<li>" . displayUserName($user) . '</li>';
+}
+echo '</ul>';
+
 /**
  * On peut aussi affecter des éléments par leur index.
  */

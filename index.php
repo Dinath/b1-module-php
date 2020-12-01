@@ -60,7 +60,8 @@ ini_set('display_errors', 'On');
         'contact',
         'accueil',
         'tableau',
-        'base-de-donnees'
+        'base-de-donnees',
+        'admin'
     ];
 
     /**
@@ -84,6 +85,8 @@ ini_set('display_errors', 'On');
             require './pages/array.php';
         } elseif ($page === 'base-de-donnees' ) {
             require './pages/database.php';
+        } elseif ($page === 'admin' ) {
+            require './pages/admin.php';
         }
     }
     /**
