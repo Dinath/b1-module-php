@@ -19,5 +19,8 @@
         <li class="nav-item">
             <a href="/?page=admin" class="nav-link">Admin</a>
         </li>
+        <li class="nav-item">
+            <a href="/?page=logout" class="nav-link">Déconnexion</a>
+        </li>
     </ul>
 </nav>

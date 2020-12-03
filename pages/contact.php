@@ -1,6 +1,8 @@
 <?php
 error_reporting(-1);
 ini_set('error_reporting', E_ALL);
+
+$_SESSION['prenom'] = 'alex';
 ?>
 
 <form method="post" action="" class="mb-3">
@@ -39,6 +41,15 @@ ini_set('error_reporting', E_ALL);
 
 <?php
 
+$fields = ['name', 'birthdate', 'firstname', 'birthdate'];
+
+foreach ($fields as $field) {
+    if (!array_key_exists($field, $_POST)) {
+        echo "Veuillez remplir une valeur";
+        exit();
+    }
+}
+
 $CHECKING_ERRORS = [
     // clef = name HTML, valeur phrase affichée à l'internaute
     'name' => 'Nom de famille',
@@ -55,7 +66,11 @@ foreach ($CHECKING_ERRORS as $key => $value) {
      * OU ||
      * Est vide $_POST[clef] (eg: $_POST['name'])
      */
-    if (! array_key_exists($key, $_POST) || empty($_POST[$key])) {
+    if (
+        ! array_key_exists($key, $_POST)
+        ||
+        empty($_POST[$key])
+    ) {
         echo '<div class="alert alert-danger" role="alert">Vous devez remplir le champ : ' . $value . '</div>';
         exit;
     }
@@ -77,13 +92,26 @@ $success = false;
 try {
     $dbh = new PDO($dsn, $user, $password);
 
+//    // 4 : Insertion dans la base de données
+//    $sql = "INSERT INTO `contact`
+//            (name, firstname, birthdate, message) VALUES (
+//            :name, :firstname, :date, :message
+//        );"; // '); DROP DATABASE epsi; --
+//
+//    $stmt = $dbh->prepare($sql);
+//
+//    $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+//    $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+//    $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+//    $stmt->bindParam(':message', $message, PDO::PARAM_STR);
+
     // 4 : Insertion dans la base de données
-    $stmt = $dbh->prepare(
-        "INSERT INTO `contact`
+    $sql = "INSERT INTO `contact`
             (name, firstname, birthdate, message) VALUES (
             '$name', '$firstname', '$dateOfBirth', '$message'
-        );"
-    );
+        );";
+
+    $stmt = $dbh->prepare($sql);
 
     // envoie le SQL en base de données
     // renvoie true si ok en base
@@ -102,4 +130,7 @@ if ($success): ?>
     <div class="alert alert-danger" role="alert">
         Quelque chose n'a pas marché !
     </div>
+    <?php
+    print_r($stmt->errorInfo());
+    ?>
 <?php endif; ?>
