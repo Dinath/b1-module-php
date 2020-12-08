@@ -89,11 +89,14 @@ $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
 // 3. Insérer des données dans la base
-$stmt = $dbh->prepare(
-"INSERT INTO `epsi`.`contact` 
+$sql = "INSERT INTO `epsi`.`contact` 
     (firstname, lastname, message, email, newsletter, birthdate) VALUES 
-    ('$firstname', '$lastname', '$message', '$email', '$newsletter', '$birthdate')
-;");
+    ('$firstname', '$lastname', '$message', '$email', ':newsetter', '$birthdate')
+;";
+
+echo $sql;
+
+$stmt = $dbh->prepare($sql);
 
 if (!$stmt) {
     print_r($dbh->errorInfo());

@@ -39,7 +39,10 @@ $dbh = new PDO($dsn, $user, $password);
  */
 if (array_key_exists('delete', $_POST)) {
     $contactId = $_POST['delete'];
-    $statement = $dbh->prepare("DELETE FROM `epsi`.`contact` WHERE id = $contactId;");
+    // Injection SQL possible avec : 3; DROP DATABASE epsi
+    // $statement = $dbh->prepare("DELETE FROM `epsi`.`contact` WHERE id = $contactId;");
+    $statement = $dbh->prepare("DELETE FROM `epsi`.`contact` WHERE id = :id;");
+    $statement->bindParam(':id', $contactId, PDO::PARAM_INT);
     $statement->execute();
 }
 
@@ -100,12 +103,15 @@ $contacts = $statement->fetchAll(PDO::FETCH_ASSOC);
                             <input type="hidden" name="update"
                                    value="<?php echo $contact['id']; ?>">
                             <input type="hidden" name="update-newsletter"
-                                   value="<?php echo ($contact['newsletter'] === '1' ? '0' : '1'); ?>">
+                                   value="<?php echo ($contact['newsletter'] === '1' ?
+                                       '0' : // si
+                                       '1'); // sinon
+                                   ?>">
                             <input class="button button-clear" type="submit" value="✉">
                         </form>
                         <form action="" method="post">
                             <input type="hidden" name="delete"
-                                    value="<?php echo $contact['id']; ?>">
+                                   value="<?php echo $contact['id']; ?>">
                             <input class="button button-clear" type="submit" value="X">
                         </form>
                     </div>

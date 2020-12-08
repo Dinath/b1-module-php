@@ -2,6 +2,52 @@
 
 <h1>Page de test</h1>
 
+<h2>Les membres de ma famille</h2>
+
+<?php
+?>
+
+<form action="" method="post">
+    <input type="text" name="new-firstname" id="">
+    <input type="submit" value="Ajouter">
+</form>
+
+<?php
+/**
+ * Je rajoute un nouveau prénom à la liste depuis le formulaire
+ */
+if (array_key_exists('new-firstname', $_POST)) {
+    /**
+     * Je n'ai encore personne dans ma famille,
+     * => je l'initialise avec un tableau vide
+     */
+    if (
+        ! array_key_exists('families', $_SESSION) // || // personne n'a rempli de familles
+//        empty($_SESSION['families']) // ma famille n'est pas vide
+    )
+    {
+        $_SESSION['families'] = [];
+    }
+
+    /**
+     * J'envoie les informations dans le tableau
+     */
+    array_push($_SESSION['families'], $_POST['new-firstname']); // [] !== NULL
+}
+?>
+
+<?php if (array_key_exists('families', $_SESSION)) { ?>
+
+    <ul>
+        <?php foreach ($_SESSION['families'] as $family): ?>
+            <li><?php echo $family; ?></li>
+        <?php endforeach; ?>
+    </ul>
+
+<?php } ?>
+
+<h2>Vos informations</h2>
+
 <?php
 $name = "alderson";
 $firstname = "elliot";
@@ -102,7 +148,7 @@ $subscriptionHasEnded = ($subscriptionDate < new DateTime());
         Vous avez <?php echo $age; ?> ans
     </li>
     <li>
-<!--        Utilisation d'une ternaire -->
+        <!--        Utilisation d'une ternaire -->
         Votre abonnement est <?php echo $subscriptionHasEnded ? "terminé" : "valide"; ?>
     </li>
     <li>

@@ -1,6 +1,7 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
+session_start();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -10,17 +11,15 @@ ini_set('display_errors', 'On');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-
     <!-- CSS Reset -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-
     <!-- Milligram CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-
     <title>Classe 3</title>
 </head>
 <body>
 <header>
+
     <nav class="container">
         <ul>
             <li><a href="/">Accueil</a></li>
@@ -36,8 +35,8 @@ ini_set('display_errors', 'On');
 <div class="container">
 
     <form action="" method="get">
-<!--        <label for="inputName">La page de destination</label>-->
-<!--        <input type="text" name="page" id="inputName">-->
+        <!--        <label for="inputName">La page de destination</label>-->
+        <!--        <input type="text" name="page" id="inputName">-->
 
         <label for="inputSelect">La page de destination</label>
         <select name="page" id="inputSelect">
@@ -49,6 +48,33 @@ ini_set('display_errors', 'On');
         </select>
         <input type="submit" value="Envoyer">
     </form>
+
+    <h1>Index</h1>
+
+    <?php
+    /**
+     * Si quelqu'un a posté son prénom dans un formulaire
+     *
+     * Je le sauvegarde en session
+     */
+    if (array_key_exists('session-firstname', $_POST)) {
+        $firstname = $_POST['session-firstname'];
+
+        $_SESSION['firstname'] = $firstname;
+    }
+    ?>
+
+<!--    Sans syntaxe alternative-->
+<!--    Si le prénom n'existe pas en session-->
+    <?php if (! array_key_exists('firstname', $_SESSION)) { ?>
+        <form action="" method="post">
+            <input type="text" name="session-firstname" id="">
+            <input type="submit" value="Envoyer">
+        </form>
+    <?php } else { ?>
+        <p>Bonjour, <?php echo $_SESSION['firstname']; ?></p>
+        <a href="/pages/logout.php">Se déconnecter</a>
+    <?php } ?>
 
     <main>
         <?php
